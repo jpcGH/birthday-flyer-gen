@@ -47,8 +47,8 @@
             </div>
         </div>
 
-        <div class="col-lg-7">
-            <div class="card premium-card editor-preview-card shadow-lg border-0">
+        <div class="col-lg-7 col-xl-6">
+            <div class="card premium-card editor-preview-card shadow-lg border-0 compact-preview-card">
                 <div class="card-body p-3 p-md-4">
                     <div class="editor-preview-head d-flex justify-content-between align-items-center mb-3">
                         <div>
@@ -58,34 +58,39 @@
                         <span class="badge text-bg-light border">Instant updates</span>
                     </div>
 
-                    <div class="live-flyer theme-royal-grace layout-classic" id="liveFlyer" data-default-wish="{{ default_wish|escape }}">
-                        <div class="flyer-texture"></div>
-                        <div class="flyer-accent-shape flyer-accent-top"></div>
-                        <div class="flyer-accent-shape flyer-accent-bottom"></div>
+                    <div class="preview-stage">
+                        <div class="preview-canvas" aria-label="Scaled flyer preview">
+                            <div class="live-flyer theme-royal-grace layout-classic" id="liveFlyer" data-default-wish="{{ default_wish|escape }}">
+                                <div class="flyer-texture"></div>
+                                <div class="flyer-accent-shape flyer-accent-top"></div>
+                                <div class="flyer-accent-shape flyer-accent-bottom"></div>
 
-                        <div class="flyer-inner-border"></div>
-                        <div class="flyer-header-line"></div>
-                        <div class="flyer-footer-line"></div>
+                                <div class="flyer-inner-border"></div>
+                                <div class="flyer-header-line"></div>
+                                <div class="flyer-footer-line"></div>
 
-                        <p class="flyer-hbd">Celebrating You</p>
-                        <p class="flyer-church">Redeemed Christian Church of God</p>
-                        <p class="flyer-parish">City of Refuge Parish</p>
+                                <p class="flyer-hbd">Celebrating You</p>
+                                <p class="flyer-church">Redeemed Christian Church of God</p>
+                                <p class="flyer-parish">City of Refuge Parish</p>
 
-                        <div class="flyer-photo-wrap">
-                            <div class="flyer-photo-ring"></div>
-                            <img src="https://placehold.co/410x410/png?text=Celebrant+Photo" alt="Celebrant preview" id="previewPhoto" class="flyer-photo">
+                                <div class="flyer-photo-wrap">
+                                    <div class="flyer-photo-ring"></div>
+                                    <img src="https://placehold.co/410x410/png?text=Celebrant+Photo" alt="Celebrant preview" id="previewPhoto" class="flyer-photo">
+                                </div>
+
+                                <p class="flyer-name" id="previewName">CELEBRANT NAME</p>
+                                <p class="flyer-date" id="previewDate">Select birthday date</p>
+
+                                <div class="flyer-wish-box">
+                                    <p id="previewWish">{{ default_wish }}</p>
+                                </div>
+
+                                <p class="flyer-tagline">...a home of grace, truth and refuge in Christ</p>
+                                <p class="flyer-signoff">With love from RCCG City of Refuge Parish</p>
+                            </div>
                         </div>
-
-                        <p class="flyer-name" id="previewName">CELEBRANT NAME</p>
-                        <p class="flyer-date" id="previewDate">Select birthday date</p>
-
-                        <div class="flyer-wish-box">
-                            <p id="previewWish">{{ default_wish }}</p>
-                        </div>
-
-                        <p class="flyer-tagline">...a home of grace, truth and refuge in Christ</p>
-                        <p class="flyer-signoff">With love from RCCG City of Refuge Parish</p>
                     </div>
+                    <p class="preview-dimensions mb-0 mt-3 text-center">Preview scales the final 1080 × 1200 px export (9:10)</p>
                 </div>
             </div>
         </div>
