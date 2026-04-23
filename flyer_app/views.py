@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .context_processors import branding
-from .forms import BirthdayFlyerForm
+from .forms import BirthdayFlyerForm, DEFAULT_BIRTHDAY_WISH
 from .models import BirthdayFlyer
 from .utils import generate_birthday_flyer
 

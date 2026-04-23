@@ -51,7 +51,8 @@ body {
     font-weight: 500;
 }
 
-.premium-card, .mockup-card {
+.premium-card,
+.mockup-card {
     border-radius: 1.2rem;
     background: #ffffff;
 }
@@ -95,50 +96,73 @@ body {
     box-shadow: 0 20px 50px rgba(25, 33, 60, 0.28);
     padding: clamp(16px, 2.8vw, 26px);
     isolation: isolate;
+    font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
+    --line-opacity: 0.8;
+    --wish-box-opacity: 0.2;
+    --wish-box-blur: 0px;
 }
 
-.flyer-overlay-glow {
+.flyer-texture,
+.flyer-accent-shape,
+.flyer-inner-border,
+.flyer-header-line,
+.flyer-footer-line {
     position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.14);
     z-index: 0;
 }
 
-.flyer-overlay-glow-left {
-    width: 28%;
-    height: 22%;
-    top: 5.5%;
-    left: 5%;
+.flyer-texture {
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.12), transparent 38%),
+        radial-gradient(circle at 84% 8%, rgba(255, 255, 255, 0.09), transparent 34%),
+        linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.03) 100%);
 }
 
-.flyer-overlay-glow-right {
-    width: 25%;
-    height: 20%;
-    top: 8%;
-    right: 4.5%;
+.flyer-accent-shape {
+    border-radius: 999px;
+    filter: blur(0.2px);
+    opacity: 0.8;
+}
+
+.flyer-accent-top {
+    width: 38%;
+    height: 18%;
+    top: 4.5%;
+    left: 4%;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+}
+
+.flyer-accent-bottom {
+    width: 30%;
+    height: 14%;
+    bottom: 11%;
+    right: 5%;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
 }
 
 .flyer-inner-border {
-    position: absolute;
     inset: 2.8%;
-    border-radius: 0.95rem;
-    border: 2px solid var(--flyer-accent);
-    z-index: 0;
+    border-radius: 1rem;
+    border: 1.6px solid var(--flyer-accent-soft);
 }
 
 .flyer-header-line,
 .flyer-footer-line {
-    position: absolute;
     left: 8%;
     right: 8%;
-    height: 2px;
-    background: var(--flyer-accent);
-    opacity: 0.85;
-    z-index: 0;
+    height: 1px;
+    background: color-mix(in srgb, var(--flyer-accent) 82%, #ffffff 18%);
+    opacity: var(--line-opacity);
 }
 
-.flyer-header-line { top: 18.5%; }
-.flyer-footer-line { bottom: 12.4%; }
+.flyer-header-line {
+    top: 18.5%;
+}
+
+.flyer-footer-line {
+    bottom: 12.4%;
+}
 
 .flyer-hbd,
 .flyer-church,
@@ -156,29 +180,37 @@ body {
 }
 
 .flyer-hbd {
-    top: 6%;
-    font-size: clamp(1.5rem, 4.5vw, 3rem);
-    font-weight: 800;
-    color: var(--flyer-accent);
+    top: 6.3%;
+    font-size: clamp(1.42rem, 4.1vw, 2.8rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--flyer-accent-soft);
 }
 
 .flyer-church,
 .flyer-parish {
     font-size: clamp(0.56rem, 1.58vw, 1.2rem);
-    font-weight: 700;
-    color: var(--flyer-accent-soft);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--flyer-accent);
 }
 
-.flyer-church { top: 12.1%; }
-.flyer-parish { top: 15.1%; }
+.flyer-church {
+    top: 12.3%;
+}
+
+.flyer-parish {
+    top: 15.2%;
+}
 
 .flyer-photo-wrap {
     position: absolute;
-    top: 22.1%;
+    top: 22%;
     left: 50%;
     transform: translateX(-50%);
-    width: 41.2%;
-    aspect-ratio: 1 / 1;
+    width: 41%;
+    aspect-ratio: 1/1;
     border-radius: 50%;
     z-index: 2;
 }
@@ -186,47 +218,51 @@ body {
 .flyer-photo-ring {
     position: absolute;
     inset: 0;
-    border-radius: 50%;
-    background: radial-gradient(circle at 40% 35%, var(--flyer-accent-soft), var(--flyer-accent));
+    border-radius: inherit;
+    background: linear-gradient(155deg, var(--flyer-accent-soft), var(--flyer-accent));
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 }
 
 .flyer-photo {
     position: absolute;
-    inset: 3.3%;
-    width: 93.4%;
-    height: 93.4%;
-    border-radius: 50%;
+    inset: 4%;
+    width: 92%;
+    height: 92%;
+    border-radius: inherit;
     object-fit: cover;
-    border: 7px solid color-mix(in srgb, var(--flyer-bg-start) 75%, #000 25%);
+    border: 4px solid color-mix(in srgb, var(--flyer-bg-start) 72%, #000 28%);
 }
 
 .flyer-name {
-    top: 56%;
-    font-size: clamp(1rem, 3vw, 2.25rem);
-    font-weight: 800;
+    top: 56.2%;
+    font-size: clamp(1.04rem, 3vw, 2.15rem);
+    font-weight: 700;
+    width: 82%;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-wrap: balance;
     color: var(--flyer-text);
-    width: 80%;
-    line-height: 1.22;
-    max-height: 2.5em;
-    overflow: hidden;
 }
 
 .flyer-date {
-    top: 64.2%;
-    font-size: clamp(0.7rem, 2.1vw, 1.3rem);
-    color: var(--flyer-accent);
-    font-weight: 700;
+    top: 64.3%;
+    font-size: clamp(0.72rem, 2.05vw, 1.27rem);
+    color: var(--flyer-accent-soft);
+    font-weight: 600;
+    letter-spacing: 0.05em;
 }
 
 .flyer-wish-box {
     position: absolute;
     left: 8.4%;
     right: 8.4%;
-    top: 68.3%;
+    top: 68.4%;
     min-height: 18%;
-    border-radius: 0.8rem;
+    border-radius: 0.95rem;
+    border: 1px solid color-mix(in srgb, var(--flyer-accent-soft) 44%, transparent);
     background: rgba(255, 255, 255, var(--wish-box-opacity));
-    padding: clamp(10px, 2.2vw, 18px);
+    backdrop-filter: blur(var(--wish-box-blur));
+    padding: clamp(11px, 2.2vw, 18px);
     z-index: 2;
     display: flex;
     align-items: center;
@@ -236,7 +272,8 @@ body {
 .flyer-wish-box p {
     margin: 0;
     text-align: center;
-    line-height: 1.46;
+    line-height: 1.52;
+    letter-spacing: 0.015em;
     font-size: clamp(0.58rem, 1.58vw, 1.02rem);
     color: var(--flyer-text);
     display: -webkit-box;
@@ -246,46 +283,148 @@ body {
 }
 
 .flyer-tagline {
-    bottom: 7.8%;
-    font-size: clamp(0.5rem, 1.2vw, 0.9rem);
-    color: var(--flyer-accent-soft);
+    bottom: 8.1%;
+    font-size: clamp(0.5rem, 1.2vw, 0.88rem);
+    color: color-mix(in srgb, var(--flyer-accent-soft) 78%, #fff 22%);
+    letter-spacing: 0.04em;
 }
 
 .flyer-signoff {
-    bottom: 4.3%;
-    font-size: clamp(0.58rem, 1.4vw, 1rem);
-    color: var(--flyer-accent);
-    font-weight: 700;
+    bottom: 4.25%;
+    font-size: clamp(0.56rem, 1.33vw, 0.95rem);
+    color: var(--flyer-accent-soft);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+.layout-minimal .flyer-header-line,
+.layout-minimal .flyer-footer-line {
+    left: 16%;
+    right: 16%;
+}
+
+.layout-card .flyer-photo-wrap {
+    border-radius: 1.2rem;
+}
+
+.layout-card .flyer-photo-ring {
+    border-radius: 1.2rem;
+    padding: 7px;
+    background: linear-gradient(150deg, var(--flyer-accent-soft), transparent 42%),
+        color-mix(in srgb, var(--flyer-accent) 82%, #000 18%);
+}
+
+.layout-card .flyer-photo {
+    border-radius: 1rem;
+    inset: 7%;
+    width: 86%;
+    height: 86%;
+}
+
+.layout-diagonal .flyer-accent-top {
+    width: 60%;
+    transform: rotate(-14deg);
+    top: -3%;
+    left: -10%;
+}
+
+.layout-diagonal .flyer-accent-bottom {
+    width: 56%;
+    transform: rotate(-14deg);
+    bottom: -4%;
+    right: -13%;
+}
+
+.layout-ornate .flyer-inner-border {
+    border-width: 2px;
+    box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.05);
+}
+
+.layout-ornate .flyer-photo-ring {
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35), inset 0 0 0 2px rgba(255, 255, 255, 0.25);
 }
 
 .theme-royal-grace {
-    --flyer-bg-start: #0a1b4d;
-    --flyer-bg-end: #4e2a6b;
-    --flyer-accent: #e0c27a;
-    --flyer-accent-soft: #f5e7c5;
-    --flyer-text: #ffffff;
-    --wish-box-opacity: 0.22;
-    background: linear-gradient(180deg, var(--flyer-bg-start) 0%, var(--flyer-bg-end) 100%);
+    --flyer-bg-start: #0a1a45;
+    --flyer-bg-end: #31235a;
+    --flyer-accent: #d1ab62;
+    --flyer-accent-soft: #f0dfb6;
+    --flyer-text: #fdfcff;
+    --wish-box-opacity: 0.15;
+    background: linear-gradient(170deg, var(--flyer-bg-start) 0%, var(--flyer-bg-end) 100%);
 }
 
 .theme-refuge-light {
-    --flyer-bg-start: #f6f1e6;
-    --flyer-bg-end: #decdae;
-    --flyer-accent: #2d4e7a;
-    --flyer-accent-soft: #6e5221;
-    --flyer-text: #1e2736;
+    --flyer-bg-start: #f8f4eb;
+    --flyer-bg-end: #ece0ca;
+    --flyer-accent: #6d5322;
+    --flyer-accent-soft: #2f3b4f;
+    --flyer-text: #222d3f;
+    --line-opacity: 0.55;
     --wish-box-opacity: 0.52;
+    --wish-box-blur: 1px;
     background: linear-gradient(180deg, var(--flyer-bg-start) 0%, var(--flyer-bg-end) 100%);
 }
 
 .theme-covenant-bloom {
-    --flyer-bg-start: #2b0e2a;
-    --flyer-bg-end: #7b2d58;
-    --flyer-accent: #f1c98b;
-    --flyer-accent-soft: #fde8c5;
-    --flyer-text: #fff8f1;
-    --wish-box-opacity: 0.24;
-    background: linear-gradient(180deg, var(--flyer-bg-start) 0%, var(--flyer-bg-end) 100%);
+    --flyer-bg-start: #39142f;
+    --flyer-bg-end: #7b2f52;
+    --flyer-accent: #ecc08e;
+    --flyer-accent-soft: #f7e0c3;
+    --flyer-text: #fff7ef;
+    --wish-box-opacity: 0.18;
+    background: linear-gradient(175deg, var(--flyer-bg-start), var(--flyer-bg-end));
+}
+
+.theme-emerald-peace {
+    --flyer-bg-start: #11352f;
+    --flyer-bg-end: #2b5b49;
+    --flyer-accent: #d4b472;
+    --flyer-accent-soft: #f0e1bf;
+    --flyer-text: #f6fbf7;
+    --wish-box-opacity: 0.17;
+    background: linear-gradient(180deg, var(--flyer-bg-start), var(--flyer-bg-end));
+}
+
+.theme-ivory-majesty {
+    --flyer-bg-start: #f6f1e6;
+    --flyer-bg-end: #ddd0b8;
+    --flyer-accent: #9d7a42;
+    --flyer-accent-soft: #364154;
+    --flyer-text: #293345;
+    --wish-box-opacity: 0.57;
+    --wish-box-blur: 1px;
+    background: linear-gradient(165deg, var(--flyer-bg-start), var(--flyer-bg-end));
+}
+
+.theme-midnight-glory {
+    --flyer-bg-start: #161922;
+    --flyer-bg-end: #1f2d49;
+    --flyer-accent: #b6bfce;
+    --flyer-accent-soft: #e8edf5;
+    --flyer-text: #f5f8fd;
+    --wish-box-opacity: 0.2;
+    background: linear-gradient(165deg, var(--flyer-bg-start), var(--flyer-bg-end));
+}
+
+.theme-wine-gold {
+    --flyer-bg-start: #3b0f1e;
+    --flyer-bg-end: #6f1f32;
+    --flyer-accent: #d7b271;
+    --flyer-accent-soft: #f4dfba;
+    --flyer-text: #fff9f1;
+    --wish-box-opacity: 0.17;
+    background: linear-gradient(170deg, var(--flyer-bg-start), var(--flyer-bg-end));
+}
+
+.theme-graceful-lilac {
+    --flyer-bg-start: #4d3a5f;
+    --flyer-bg-end: #7f617f;
+    --flyer-accent: #e0c28f;
+    --flyer-accent-soft: #f5e7cf;
+    --flyer-text: #fff9ff;
+    --wish-box-opacity: 0.2;
+    background: linear-gradient(170deg, var(--flyer-bg-start), var(--flyer-bg-end));
 }
 
 .flyer-preview {

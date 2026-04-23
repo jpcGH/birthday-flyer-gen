@@ -18,6 +18,11 @@ class BirthdayFlyer(models.Model):
         ('royal_grace', 'Royal Grace'),
         ('refuge_light', 'Refuge Light'),
         ('covenant_bloom', 'Covenant Bloom'),
+        ('emerald_peace', 'Emerald Peace'),
+        ('ivory_majesty', 'Ivory Majesty'),
+        ('midnight_glory', 'Midnight Glory'),
+        ('wine_gold', 'Wine & Gold'),
+        ('graceful_lilac', 'Graceful Lilac'),
     ]
 
     celebrant_name = models.CharField(max_length=120)

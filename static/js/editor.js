@@ -16,6 +16,27 @@
     }
 
     const defaultWish = liveFlyer.dataset.defaultWish || '';
+    const allThemeClasses = [
+        'theme-royal-grace',
+        'theme-refuge-light',
+        'theme-covenant-bloom',
+        'theme-emerald-peace',
+        'theme-ivory-majesty',
+        'theme-midnight-glory',
+        'theme-wine-gold',
+        'theme-graceful-lilac',
+    ];
+    const allLayoutClasses = ['layout-classic', 'layout-minimal', 'layout-card', 'layout-diagonal', 'layout-ornate'];
+    const themeLayouts = {
+        royal_grace: 'layout-classic',
+        refuge_light: 'layout-minimal',
+        covenant_bloom: 'layout-ornate',
+        emerald_peace: 'layout-card',
+        ivory_majesty: 'layout-minimal',
+        midnight_glory: 'layout-diagonal',
+        wine_gold: 'layout-ornate',
+        graceful_lilac: 'layout-card',
+    };
 
     function formatDate(dateValue) {
         if (!dateValue) {
@@ -39,9 +60,13 @@
     }
 
     function updateTheme() {
-        const themeClass = `theme-${themeInput.value.replace('_', '-')}`;
-        liveFlyer.classList.remove('theme-royal-grace', 'theme-refuge-light', 'theme-covenant-bloom');
+        const selectedTheme = themeInput.value;
+        const themeClass = `theme-${selectedTheme.replace('_', '-')}`;
+        const layoutClass = themeLayouts[selectedTheme] || 'layout-classic';
+        liveFlyer.classList.remove(...allThemeClasses);
+        liveFlyer.classList.remove(...allLayoutClasses);
         liveFlyer.classList.add(themeClass);
+        liveFlyer.classList.add(layoutClass);
     }
 
     function updateImagePreview() {
