@@ -216,7 +216,7 @@ def generate_birthday_flyer(record, church_logo_path=None):
     date_y = y_pos + 10
     draw.text((540, date_y), _format_date(record.birthday_date), font=meta_font, fill=style['accent_soft'], anchor='mm')
 
-    wish_text = (record.wish or '').strip() or get_default_birthday_wish(record.pk)
+    wish_text = (record.wish or '').strip() or get_default_birthday_wish()
     wish_font, wish_lines = _fit_text_with_max_lines(
         draw,
         wish_text,
