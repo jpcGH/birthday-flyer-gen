@@ -1,3 +1,5 @@
+import random
+
 from django import forms
 from django.conf import settings
 
@@ -16,7 +18,7 @@ DEFAULT_BIRTHDAY_WISH = DEFAULT_BIRTHDAY_WISHES[0]
 
 def get_default_birthday_wish(seed=None):
     if seed is None:
-        return DEFAULT_BIRTHDAY_WISH
+        return random.choice(DEFAULT_BIRTHDAY_WISHES)
     return DEFAULT_BIRTHDAY_WISHES[seed % len(DEFAULT_BIRTHDAY_WISHES)]
 
 
@@ -34,6 +36,16 @@ class BirthdayFlyerForm(forms.ModelForm):
         help_texts = {
             'wish': 'Leave blank to use the church default birthday prayer.',
         }
+
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if not (instance.wish or '').strip():
+            instance.wish = get_default_birthday_wish()
+        if commit:
+            instance.save()
+            self.save_m2m()
+        return instance
 
     def clean_uploaded_photo(self):
         photo = self.cleaned_data.get('uploaded_photo')
