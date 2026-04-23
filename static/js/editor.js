@@ -61,7 +61,7 @@
 
     function updateTheme() {
         const selectedTheme = themeInput.value;
-        const themeClass = `theme-${selectedTheme.replace('_', '-')}`;
+        const themeClass = `theme-${selectedTheme.replaceAll('_', '-')}`;
         const layoutClass = themeLayouts[selectedTheme] || 'layout-classic';
         liveFlyer.classList.remove(...allThemeClasses);
         liveFlyer.classList.remove(...allLayoutClasses);
