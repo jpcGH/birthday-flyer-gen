@@ -101,7 +101,7 @@ body {
 }
 
 .preview-canvas {
-    width: min(100%, 360px);
+    width: min(100%, 520px);
     aspect-ratio: 9 / 10;
     margin: 0 auto;
 }
@@ -115,7 +115,6 @@ body {
 .live-flyer {
     aspect-ratio: 9 / 10;
     width: 100%;
-    max-width: 360px;
     border-radius: 1rem;
     position: relative;
     overflow: hidden;
@@ -126,6 +125,7 @@ body {
     --line-opacity: 0.8;
     --wish-box-opacity: 0.2;
     --wish-box-blur: 0px;
+    container-type: inline-size;
 }
 
 .flyer-texture,
@@ -207,7 +207,7 @@ body {
 
 .flyer-hbd {
     top: 6.3%;
-    font-size: clamp(1.42rem, 4.1vw, 2.8rem);
+    font-size: clamp(1rem, 6.4cqw, 2.8rem);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 600;
@@ -216,7 +216,7 @@ body {
 
 .flyer-church,
 .flyer-parish {
-    font-size: clamp(0.56rem, 1.58vw, 1.2rem);
+    font-size: clamp(0.5rem, 2.5cqw, 1.2rem);
     font-weight: 600;
     letter-spacing: 0.04em;
     color: var(--flyer-accent);
@@ -261,7 +261,7 @@ body {
 
 .flyer-name {
     top: 56.2%;
-    font-size: clamp(1.04rem, 3vw, 2.15rem);
+    font-size: clamp(0.82rem, 4.3cqw, 2.15rem);
     font-weight: 700;
     width: 82%;
     line-height: 1.2;
@@ -272,7 +272,7 @@ body {
 
 .flyer-date {
     top: 64.3%;
-    font-size: clamp(0.72rem, 2.05vw, 1.27rem);
+    font-size: clamp(0.58rem, 2.9cqw, 1.27rem);
     color: var(--flyer-accent-soft);
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -300,7 +300,7 @@ body {
     text-align: center;
     line-height: 1.52;
     letter-spacing: 0.015em;
-    font-size: clamp(0.58rem, 1.58vw, 1.02rem);
+    font-size: clamp(0.52rem, 2.35cqw, 1.02rem);
     color: var(--flyer-text);
     display: -webkit-box;
     -webkit-line-clamp: 5;
@@ -310,14 +310,14 @@ body {
 
 .flyer-tagline {
     bottom: 8.1%;
-    font-size: clamp(0.5rem, 1.2vw, 0.88rem);
+    font-size: clamp(0.46rem, 1.8cqw, 0.88rem);
     color: color-mix(in srgb, var(--flyer-accent-soft) 78%, #fff 22%);
     letter-spacing: 0.04em;
 }
 
 .flyer-signoff {
     bottom: 4.25%;
-    font-size: clamp(0.56rem, 1.33vw, 0.95rem);
+    font-size: clamp(0.5rem, 2cqw, 0.95rem);
     color: var(--flyer-accent-soft);
     font-weight: 500;
     letter-spacing: 0.03em;
@@ -475,20 +475,12 @@ body {
 
 @media (max-width: 991px) {
     .preview-canvas {
-        width: min(100%, 340px);
-    }
-
-    .live-flyer {
-        max-width: 340px;
+        width: min(100%, 460px);
     }
 }
 
 @media (max-width: 575px) {
     .preview-canvas {
-        width: min(100%, 300px);
-    }
-
-    .live-flyer {
-        max-width: 300px;
+        width: min(100%, 360px);
     }
 }
