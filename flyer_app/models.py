@@ -11,15 +11,15 @@ def generated_flyer_path(instance, filename):
 
 class BirthdayFlyer(models.Model):
     THEME_CHOICES = [
-        ('royal_gold', 'Royal Gold'),
-        ('purple_grace', 'Purple Grace'),
-        ('burgundy_joy', 'Burgundy Joy'),
+        ('royal_grace', 'Royal Grace'),
+        ('refuge_light', 'Refuge Light'),
+        ('covenant_bloom', 'Covenant Bloom'),
     ]
 
     celebrant_name = models.CharField(max_length=120)
     birthday_date = models.DateField()
     wish = models.TextField(blank=True)
-    theme = models.CharField(max_length=20, choices=THEME_CHOICES, default='royal_gold')
+    theme = models.CharField(max_length=20, choices=THEME_CHOICES, default='royal_grace')
     uploaded_photo = models.ImageField(upload_to=upload_photo_path)
     generated_flyer = models.ImageField(upload_to=generated_flyer_path, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

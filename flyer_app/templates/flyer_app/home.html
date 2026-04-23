@@ -1,60 +1,97 @@
 {% extends 'base.html' %}
-{% block title %}Create Flyer | RCCG City of Refuge{% endblock %}
+{% load static %}
+{% block title %}Premium Flyer Editor | RCCG City of Refuge{% endblock %}
+
 {% block content %}
-<div class="row g-4 align-items-stretch">
-    <div class="col-lg-7">
-        <div class="card premium-card shadow-lg border-0 h-100">
-            <div class="card-body p-4 p-md-5">
-                <h1 class="display-6 fw-bold mb-2">Create A Birthday Flyer</h1>
-                <p class="text-muted mb-4">Generate elegant birthday flyers for church members in seconds. Fill the form below and click <strong>Generate Flyer</strong>.</p>
-                <form method="post" enctype="multipart/form-data" novalidate>
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Full Name</label>
-                        {{ form.celebrant_name }}
-                        {% if form.celebrant_name.errors %}<div class="text-danger small mt-1">{{ form.celebrant_name.errors.0 }}</div>{% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Birthday Date</label>
-                        {{ form.birthday_date }}
-                        {% if form.birthday_date.errors %}<div class="text-danger small mt-1">{{ form.birthday_date.errors.0 }}</div>{% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Celebrant Photo (JPG, JPEG, PNG)</label>
-                        {{ form.uploaded_photo }}
-                        {% if form.uploaded_photo.errors %}<div class="text-danger small mt-1">{{ form.uploaded_photo.errors.0 }}</div>{% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Theme</label>
-                        {{ form.theme }}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Birthday Wish (Optional)</label>
-                        {{ form.wish }}
-                        <div class="form-text">{{ form.wish.help_text }}</div>
-                        {% if form.wish.errors %}<div class="text-danger small mt-1">{{ form.wish.errors.0 }}</div>{% endif %}
-                    </div>
-                    <button type="submit" class="btn btn-gold btn-lg w-100">Generate Flyer</button>
-                </form>
+<div class="editor-shell">
+    <div class="row g-4 align-items-start">
+        <div class="col-lg-5">
+            <div class="card premium-card editor-form-card shadow-lg border-0 sticky-lg-top">
+                <div class="card-body p-4 p-md-5">
+                    <p class="text-uppercase editor-label mb-2">Redeemed Christian Church of God</p>
+                    <h1 class="h3 fw-bold mb-2">City of Refuge Parish Flyer Editor</h1>
+                    <p class="text-muted mb-4">Update details and watch the flyer preview change instantly before generating your final PNG.</p>
+
+                    <form method="post" enctype="multipart/form-data" novalidate id="flyerForm">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Full Name</label>
+                            {{ form.celebrant_name }}
+                            {% if form.celebrant_name.errors %}<div class="text-danger small mt-1">{{ form.celebrant_name.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Birthday Date</label>
+                            {{ form.birthday_date }}
+                            {% if form.birthday_date.errors %}<div class="text-danger small mt-1">{{ form.birthday_date.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Celebrant Photo (JPG, JPEG, PNG)</label>
+                            {{ form.uploaded_photo }}
+                            <div class="form-text">Max size: 8MB</div>
+                            {% if form.uploaded_photo.errors %}<div class="text-danger small mt-1">{{ form.uploaded_photo.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Theme</label>
+                            {{ form.theme }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Birthday Wish (Optional)</label>
+                            {{ form.wish }}
+                            <div class="form-text">{{ form.wish.help_text }}</div>
+                            {% if form.wish.errors %}<div class="text-danger small mt-1">{{ form.wish.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <button type="submit" class="btn btn-gold btn-lg w-100 mt-2">Generate Flyer PNG</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-5">
-        <div class="card mockup-card border-0 shadow-lg h-100">
-            <div class="card-body p-4 d-flex flex-column justify-content-center">
-                <p class="text-uppercase fw-semibold mb-2 badge-label">Redeemed Christian Church of God</p>
-                <h2 class="h3 fw-bold mb-3">City of Refuge Parish</h2>
-                <p class="mb-4 text-muted">A premium, polished and mobile-friendly media tool for birthday celebrations.</p>
-                <div class="mock-flyer mx-auto">
-                    <div class="mock-inner">
-                        <h3>Happy Birthday</h3>
-                        <div class="avatar-circle"></div>
-                        <p class="name">Celebrant Name</p>
-                        <p class="mini">Beautifully generated by RCCG City of Refuge Parish</p>
+
+        <div class="col-lg-7">
+            <div class="card premium-card editor-preview-card shadow-lg border-0">
+                <div class="card-body p-3 p-md-4">
+                    <div class="editor-preview-head d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <p class="text-uppercase small mb-1 preview-kicker">Live Preview</p>
+                            <h2 class="h5 fw-bold mb-0">Premium Birthday Flyer Layout</h2>
+                        </div>
+                        <span class="badge text-bg-light border">Instant updates</span>
+                    </div>
+
+                    <div class="live-flyer theme-royal-grace" id="liveFlyer" data-default-wish="{{ default_wish|escape }}">
+                        <div class="flyer-overlay-glow flyer-overlay-glow-left"></div>
+                        <div class="flyer-overlay-glow flyer-overlay-glow-right"></div>
+
+                        <div class="flyer-inner-border"></div>
+                        <div class="flyer-header-line"></div>
+                        <div class="flyer-footer-line"></div>
+
+                        <p class="flyer-hbd">Happy Birthday</p>
+                        <p class="flyer-church">Redeemed Christian Church of God</p>
+                        <p class="flyer-parish">City of Refuge Parish</p>
+
+                        <div class="flyer-photo-wrap">
+                            <div class="flyer-photo-ring"></div>
+                            <img src="https://placehold.co/410x410/png?text=Celebrant+Photo" alt="Celebrant preview" id="previewPhoto" class="flyer-photo">
+                        </div>
+
+                        <p class="flyer-name" id="previewName">CELEBRANT NAME</p>
+                        <p class="flyer-date" id="previewDate">Select birthday date</p>
+
+                        <div class="flyer-wish-box">
+                            <p id="previewWish">{{ default_wish }}</p>
+                        </div>
+
+                        <p class="flyer-tagline">...a home of grace, truth and refuge in Christ</p>
+                        <p class="flyer-signoff">RCCG City of Refuge Parish</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/editor.js' %}"></script>
 {% endblock %}

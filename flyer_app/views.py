@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import BirthdayFlyerForm
+from .forms import DEFAULT_BIRTHDAY_WISH, BirthdayFlyerForm
 from .models import BirthdayFlyer
 from .utils import generate_birthday_flyer
 
@@ -15,7 +15,14 @@ def home(request):
             generate_birthday_flyer(flyer_record)
             messages.success(request, 'Birthday flyer generated successfully.')
             return redirect('flyer_app:result', pk=flyer_record.pk)
-    return render(request, 'flyer_app/home.html', {'form': form})
+    return render(
+        request,
+        'flyer_app/home.html',
+        {
+            'form': form,
+            'default_wish': DEFAULT_BIRTHDAY_WISH,
+        },
+    )
 
 
 def result(request, pk):
