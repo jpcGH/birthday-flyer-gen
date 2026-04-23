@@ -109,7 +109,7 @@ def _fit_text_with_max_lines(draw, text, max_width, max_lines, start_size, min_s
 
 
 def _format_date(date_obj):
-    return datetime.strftime(date_obj, '%d %B %Y')
+    return datetime.strftime(date_obj, '%d %B')
 
 
 def _add_texture_overlay(width, height, accent_rgb, texture='soft'):
@@ -148,7 +148,6 @@ def generate_birthday_flyer(record, church_logo_path=None):
     o_draw = ImageDraw.Draw(overlay)
 
     o_draw.rounded_rectangle((38, 30, width - 38, height - 30), radius=34, outline=style['accent_soft'], width=3)
-    o_draw.line((84, 225, width - 84, 225), fill=style['accent'], width=2)
     o_draw.line((84, height - 112, width - 84, height - 112), fill=style['accent'], width=2)
 
     base = Image.alpha_composite(base, overlay)
@@ -234,7 +233,6 @@ def generate_birthday_flyer(record, church_logo_path=None):
         draw.text((540, line_y), line, font=wish_font, fill=style['text'], anchor='ma')
         line_y += line_height
 
-    draw.text((540, height - 78), '...a home of grace, truth and refuge in Christ', font=small_font, fill=style['accent'], anchor='mm')
     draw.text((540, height - 53), 'With love from RCCG City of Refuge Parish', font=small_font, fill=style['accent_soft'], anchor='mm')
 
     if church_logo_path and Path(church_logo_path).exists():
