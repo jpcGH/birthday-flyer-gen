@@ -4,7 +4,7 @@ from django.conf import settings
 from .models import BirthdayFlyer
 
 DEFAULT_BIRTHDAY_WISH = (
-    'Happy Birthday. May the Lord bless you, keep you, prosper you, and cause His face to shine '
+    'May the Lord bless you, keep you, prosper you, and cause His face to shine '
     'upon you always. Wishing you joy, peace, divine health, and greater grace in this new year.'
 )
 
