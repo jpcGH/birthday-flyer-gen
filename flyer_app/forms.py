@@ -3,10 +3,21 @@ from django.conf import settings
 
 from .models import BirthdayFlyer
 
-DEFAULT_BIRTHDAY_WISH = (
+DEFAULT_BIRTHDAY_WISHES = (
     'May the Lord bless you, keep you, prosper you, and cause His face to shine '
-    'upon you always. Wishing you joy, peace, divine health, and greater grace in this new year.'
+    'upon you always. Wishing you joy, peace, divine health, and greater grace in this new year.',
+    'May this new year of your life overflow with joy, divine favor, and testimonies. '
+    'May God strengthen you and establish every good thing concerning you.',
+    'Wishing you peace that surpasses understanding, renewed strength, and abundant grace. '
+    'May your days be filled with love, laughter, and the goodness of God.',
 )
+DEFAULT_BIRTHDAY_WISH = DEFAULT_BIRTHDAY_WISHES[0]
+
+
+def get_default_birthday_wish(seed=None):
+    if seed is None:
+        return DEFAULT_BIRTHDAY_WISH
+    return DEFAULT_BIRTHDAY_WISHES[seed % len(DEFAULT_BIRTHDAY_WISHES)]
 
 
 class BirthdayFlyerForm(forms.ModelForm):

@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .context_processors import branding
-from .forms import BirthdayFlyerForm, DEFAULT_BIRTHDAY_WISH
+from .forms import BirthdayFlyerForm, get_default_birthday_wish
 from .models import BirthdayFlyer
 from .utils import generate_birthday_flyer
 
@@ -22,7 +22,7 @@ def home(request):
         'flyer_app/home.html',
         {
             'form': form,
-            'default_wish': DEFAULT_BIRTHDAY_WISH,
+            'default_wish': get_default_birthday_wish(),
         },
     )
 
