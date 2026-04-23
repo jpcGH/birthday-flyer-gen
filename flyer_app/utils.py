@@ -160,9 +160,7 @@ def generate_birthday_flyer(record, church_logo_path=None):
     wish_font = _get_font(28)
     small_font = _get_font(19)
 
-    draw.text((540, 88), 'Celebrating You', font=heading_font, fill=style['accent_soft'], anchor='mm')
-    draw.text((540, 142), 'Redeemed Christian Church of God', font=title_font, fill=style['accent'], anchor='mm')
-    draw.text((540, 178), 'City of Refuge Parish', font=title_font, fill=style['accent'], anchor='mm')
+    draw.text((540, 132), 'Happy Birthday', font=heading_font, fill=style['accent_soft'], anchor='mm')
 
     photo = Image.open(record.uploaded_photo.path).convert('RGB').resize((372, 372), Image.Resampling.LANCZOS)
     frame_size = 396
