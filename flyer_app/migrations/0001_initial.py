@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
                 ('celebrant_name', models.CharField(max_length=120)),
                 ('birthday_date', models.DateField()),
                 ('wish', models.TextField(blank=True)),
-                ('theme', models.CharField(choices=[('royal_gold', 'Royal Gold'), ('purple_grace', 'Purple Grace'), ('burgundy_joy', 'Burgundy Joy')], default='royal_gold', max_length=20)),
+                ('theme', models.CharField(choices=[('royal_grace', 'Royal Grace'), ('refuge_light', 'Refuge Light'), ('covenant_bloom', 'Covenant Bloom')], default='royal_grace', max_length=20)),
                 ('uploaded_photo', models.ImageField(upload_to='uploads/')),
                 ('generated_flyer', models.ImageField(blank=True, upload_to='generated_flyers/')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

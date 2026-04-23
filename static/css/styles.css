@@ -1,13 +1,12 @@
 :root {
-    --deep-blue: #0f1e46;
-    --gold: #d4ad63;
-    --cream: #f8f3e9;
-    --text-dark: #1f2330;
+    --surface: #f3f5fb;
+    --ink: #1d2433;
+    --muted: #5f6678;
 }
 
 body {
     background: linear-gradient(145deg, #f6f8fc 0%, #eef2f8 100%);
-    color: var(--text-dark);
+    color: var(--ink);
     min-height: 100vh;
 }
 
@@ -23,7 +22,7 @@ body {
 
 .nav-premium {
     background: linear-gradient(90deg, #111e46 0%, #2f1d53 100%);
-    box-shadow: 0 8px 24px rgba(14, 23, 53, 0.25);
+    box-shadow: 0 10px 26px rgba(14, 23, 53, 0.24);
 }
 
 .brand-logo {
@@ -57,6 +56,18 @@ body {
     background: #ffffff;
 }
 
+.editor-form-card,
+.editor-preview-card {
+    overflow: hidden;
+}
+
+.editor-label {
+    letter-spacing: 0.06em;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #7d6332;
+}
+
 .btn-gold {
     background: linear-gradient(90deg, #b98d47 0%, #d6b36f 100%);
     color: #fff;
@@ -69,57 +80,223 @@ body {
     background: linear-gradient(90deg, #a87f3d 0%, #c6a35f 100%);
 }
 
-.badge-label {
-    color: #6b5a37;
-    letter-spacing: 0.08em;
+.preview-kicker {
+    letter-spacing: 0.07em;
+    color: #7f8798;
+    font-weight: 600;
 }
 
-.mock-flyer {
+.live-flyer {
+    aspect-ratio: 1080/1350;
     width: 100%;
-    max-width: 300px;
-    padding: 1rem;
     border-radius: 1rem;
-    background: linear-gradient(180deg, #161f4d 0%, #5d3a7d 100%);
-    box-shadow: 0 12px 26px rgba(20, 24, 55, 0.35);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(25, 33, 60, 0.28);
+    padding: clamp(16px, 2.8vw, 26px);
+    isolation: isolate;
 }
 
-.mock-inner {
-    border: 2px solid rgba(212, 173, 99, 0.9);
-    border-radius: 0.9rem;
-    text-align: center;
-    color: #fff;
-    padding: 1rem;
-}
-
-.mock-inner h3 {
-    color: var(--gold);
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.avatar-circle {
-    width: 96px;
-    height: 96px;
+.flyer-overlay-glow {
+    position: absolute;
     border-radius: 50%;
-    margin: 0 auto 0.75rem;
-    background: radial-gradient(circle, #ffffff 0%, #d9d9d9 100%);
-    border: 5px solid var(--gold);
+    background: rgba(255, 255, 255, 0.14);
+    z-index: 0;
 }
 
-.name {
-    font-weight: 700;
-    margin-bottom: 0.4rem;
+.flyer-overlay-glow-left {
+    width: 28%;
+    height: 22%;
+    top: 5.5%;
+    left: 5%;
 }
 
-.mini {
-    font-size: 0.85rem;
+.flyer-overlay-glow-right {
+    width: 25%;
+    height: 20%;
+    top: 8%;
+    right: 4.5%;
+}
+
+.flyer-inner-border {
+    position: absolute;
+    inset: 2.8%;
+    border-radius: 0.95rem;
+    border: 2px solid var(--flyer-accent);
+    z-index: 0;
+}
+
+.flyer-header-line,
+.flyer-footer-line {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: var(--flyer-accent);
     opacity: 0.85;
+    z-index: 0;
+}
+
+.flyer-header-line { top: 18.5%; }
+.flyer-footer-line { bottom: 12.4%; }
+
+.flyer-hbd,
+.flyer-church,
+.flyer-parish,
+.flyer-name,
+.flyer-date,
+.flyer-tagline,
+.flyer-signoff {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     margin: 0;
+    text-align: center;
+    z-index: 2;
+}
+
+.flyer-hbd {
+    top: 6%;
+    font-size: clamp(1.5rem, 4.5vw, 3rem);
+    font-weight: 800;
+    color: var(--flyer-accent);
+}
+
+.flyer-church,
+.flyer-parish {
+    font-size: clamp(0.56rem, 1.58vw, 1.2rem);
+    font-weight: 700;
+    color: var(--flyer-accent-soft);
+}
+
+.flyer-church { top: 12.1%; }
+.flyer-parish { top: 15.1%; }
+
+.flyer-photo-wrap {
+    position: absolute;
+    top: 22.1%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 41.2%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.flyer-photo-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, var(--flyer-accent-soft), var(--flyer-accent));
+}
+
+.flyer-photo {
+    position: absolute;
+    inset: 3.3%;
+    width: 93.4%;
+    height: 93.4%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 7px solid color-mix(in srgb, var(--flyer-bg-start) 75%, #000 25%);
+}
+
+.flyer-name {
+    top: 56%;
+    font-size: clamp(1rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: var(--flyer-text);
+    width: 80%;
+    line-height: 1.22;
+    max-height: 2.5em;
+    overflow: hidden;
+}
+
+.flyer-date {
+    top: 64.2%;
+    font-size: clamp(0.7rem, 2.1vw, 1.3rem);
+    color: var(--flyer-accent);
+    font-weight: 700;
+}
+
+.flyer-wish-box {
+    position: absolute;
+    left: 8.4%;
+    right: 8.4%;
+    top: 68.3%;
+    min-height: 18%;
+    border-radius: 0.8rem;
+    background: rgba(255, 255, 255, var(--wish-box-opacity));
+    padding: clamp(10px, 2.2vw, 18px);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flyer-wish-box p {
+    margin: 0;
+    text-align: center;
+    line-height: 1.46;
+    font-size: clamp(0.58rem, 1.58vw, 1.02rem);
+    color: var(--flyer-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.flyer-tagline {
+    bottom: 7.8%;
+    font-size: clamp(0.5rem, 1.2vw, 0.9rem);
+    color: var(--flyer-accent-soft);
+}
+
+.flyer-signoff {
+    bottom: 4.3%;
+    font-size: clamp(0.58rem, 1.4vw, 1rem);
+    color: var(--flyer-accent);
+    font-weight: 700;
+}
+
+.theme-royal-grace {
+    --flyer-bg-start: #0a1b4d;
+    --flyer-bg-end: #4e2a6b;
+    --flyer-accent: #e0c27a;
+    --flyer-accent-soft: #f5e7c5;
+    --flyer-text: #ffffff;
+    --wish-box-opacity: 0.22;
+    background: linear-gradient(180deg, var(--flyer-bg-start) 0%, var(--flyer-bg-end) 100%);
+}
+
+.theme-refuge-light {
+    --flyer-bg-start: #f6f1e6;
+    --flyer-bg-end: #decdae;
+    --flyer-accent: #2d4e7a;
+    --flyer-accent-soft: #6e5221;
+    --flyer-text: #1e2736;
+    --wish-box-opacity: 0.52;
+    background: linear-gradient(180deg, var(--flyer-bg-start) 0%, var(--flyer-bg-end) 100%);
+}
+
+.theme-covenant-bloom {
+    --flyer-bg-start: #2b0e2a;
+    --flyer-bg-end: #7b2d58;
+    --flyer-accent: #f1c98b;
+    --flyer-accent-soft: #fde8c5;
+    --flyer-text: #fff8f1;
+    --wish-box-opacity: 0.24;
+    background: linear-gradient(180deg, var(--flyer-bg-start) 0%, var(--flyer-bg-end) 100%);
 }
 
 .flyer-preview {
     max-height: 820px;
     border: 4px solid #fff;
+}
+
+@media (max-width: 1199px) {
+    .sticky-lg-top {
+        position: static !important;
+    }
 }
 
 @media (max-width: 991px) {

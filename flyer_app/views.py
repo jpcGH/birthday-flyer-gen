@@ -17,7 +17,14 @@ def home(request):
             generate_birthday_flyer(flyer_record, church_logo_path=brand['logo_path'])
             messages.success(request, 'Birthday flyer generated successfully.')
             return redirect('flyer_app:result', pk=flyer_record.pk)
-    return render(request, 'flyer_app/home.html', {'form': form})
+    return render(
+        request,
+        'flyer_app/home.html',
+        {
+            'form': form,
+            'default_wish': DEFAULT_BIRTHDAY_WISH,
+        },
+    )
 
 
 def result(request, pk):
