@@ -13,7 +13,7 @@ def branding(request):
                 'footer_owner': config.footer_owner,
                 'footer_rights_text': config.footer_rights_text,
                 'logo_url': config.logo.url if config.logo else None,
-                'logo_path': config.logo.path if config.logo else None,
+                'logo_file': config.logo if config.logo else None,
             }
         )
 

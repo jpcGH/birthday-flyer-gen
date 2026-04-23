@@ -1,8 +1,8 @@
+import io
 import textwrap
 import uuid
-from pathlib import Path
 
-from django.conf import settings
+from django.core.files.base import ContentFile
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 from .forms import get_default_birthday_wish
@@ -140,7 +140,7 @@ def _add_texture_overlay(width, height, accent_rgb, texture='soft'):
     return overlay
 
 
-def generate_birthday_flyer(record, church_logo_path=None):
+def generate_birthday_flyer(record, church_logo=None):
     style = THEME_STYLES.get(record.theme, THEME_STYLES['royal_grace'])
     width, height = EXPORT_WIDTH, EXPORT_HEIGHT
 
@@ -160,14 +160,15 @@ def generate_birthday_flyer(record, church_logo_path=None):
     draw = ImageDraw.Draw(base)
 
     heading_font = _get_font(57, bold=True)
-    title_font = _get_font(27, bold=True)
     meta_font = _get_font(31)
     wish_font = _get_font(28)
     small_font = _get_font(19)
 
     draw.text((540, 132), 'Happy Birthday', font=heading_font, fill=style['accent_soft'], anchor='mm')
 
-    photo = Image.open(record.uploaded_photo.path).convert('RGB').resize((372, 372), Image.Resampling.LANCZOS)
+    with record.uploaded_photo.open('rb'):
+        photo = Image.open(record.uploaded_photo).convert('RGB').resize((372, 372), Image.Resampling.LANCZOS)
+
     frame_size = 396
     framed = Image.new('RGBA', (frame_size, frame_size), (0, 0, 0, 0))
     f_draw = ImageDraw.Draw(framed)
@@ -241,17 +242,16 @@ def generate_birthday_flyer(record, church_logo_path=None):
 
     draw.text((540, height - 53), 'With love from RCCG City of Refuge Parish', font=small_font, fill=style['accent_soft'], anchor='mm')
 
-    if church_logo_path and Path(church_logo_path).exists():
-        logo = Image.open(church_logo_path).convert('RGBA').resize((92, 92), Image.Resampling.LANCZOS)
+    if church_logo and getattr(church_logo, 'name', None):
+        with church_logo.open('rb'):
+            logo = Image.open(church_logo).convert('RGBA').resize((92, 92), Image.Resampling.LANCZOS)
         base.alpha_composite(logo, (84, 72))
 
-    out_dir = Path(settings.MEDIA_ROOT) / 'generated_flyers'
-    out_dir.mkdir(parents=True, exist_ok=True)
     filename = f'flyer_{uuid.uuid4().hex[:12]}.png'
-    output_path = out_dir / filename
+    output_stream = io.BytesIO()
+    base.convert('RGB').save(output_stream, 'PNG', optimize=True)
+    output_stream.seek(0)
 
-    base.convert('RGB').save(output_path, 'PNG', optimize=True)
-
-    record.generated_flyer.name = f'generated_flyers/{filename}'
+    record.generated_flyer.save(filename, ContentFile(output_stream.getvalue()), save=False)
     record.save(update_fields=['generated_flyer'])
     return record.generated_flyer.url

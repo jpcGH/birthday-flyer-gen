@@ -14,7 +14,7 @@ def home(request):
         if form.is_valid():
             flyer_record = form.save()
             brand = branding(request)['branding']
-            generate_birthday_flyer(flyer_record, church_logo_path=brand['logo_path'])
+            generate_birthday_flyer(flyer_record, church_logo=brand.get('logo_file'))
             messages.success(request, 'Birthday flyer generated successfully.')
             return redirect('flyer_app:result', pk=flyer_record.pk)
     return render(
