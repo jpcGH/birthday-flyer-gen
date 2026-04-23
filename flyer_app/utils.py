@@ -1,6 +1,5 @@
 import textwrap
 import uuid
-from datetime import datetime
 from pathlib import Path
 
 from django.conf import settings
@@ -108,8 +107,15 @@ def _fit_text_with_max_lines(draw, text, max_width, max_lines, start_size, min_s
     return font, wrapped[:max_lines]
 
 
+def _day_ordinal(day):
+    if 11 <= day % 100 <= 13:
+        return 'th'
+    return {1: 'st', 2: 'nd', 3: 'rd'}.get(day % 10, 'th')
+
+
 def _format_date(date_obj):
-    return datetime.strftime(date_obj, '%d %B')
+    day = date_obj.day
+    return f'{day}{_day_ordinal(day)} {date_obj.strftime("%B")}'
 
 
 def _add_texture_overlay(width, height, accent_rgb, texture='soft'):

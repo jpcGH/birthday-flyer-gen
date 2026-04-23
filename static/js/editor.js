@@ -38,6 +38,22 @@
         graceful_lilac: 'layout-card',
     };
 
+    function getOrdinalSuffix(day) {
+        if (day >= 11 && day <= 13) {
+            return 'th';
+        }
+        if (day % 10 === 1) {
+            return 'st';
+        }
+        if (day % 10 === 2) {
+            return 'nd';
+        }
+        if (day % 10 === 3) {
+            return 'rd';
+        }
+        return 'th';
+    }
+
     function formatDate(dateValue) {
         if (!dateValue) {
             return 'Select birthday date';
@@ -46,10 +62,10 @@
         if (Number.isNaN(parsed.getTime())) {
             return 'Select birthday date';
         }
-        return parsed.toLocaleDateString('en-GB', {
-            day: '2-digit',
-            month: 'long',
-        });
+
+        const day = parsed.getDate();
+        const month = parsed.toLocaleDateString('en-GB', { month: 'long' });
+        return `${day}${getOrdinalSuffix(day)} ${month}`;
     }
 
     function updateTextPreview() {
