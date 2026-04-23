@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Flyer Preview | RCCG City of Refuge{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card premium-card border-0 shadow-lg">
+            <div class="card-body p-4 p-md-5 text-center">
+                <h1 class="h2 fw-bold mb-2">Flyer Ready 🎉</h1>
+                <p class="text-muted mb-4">Your birthday flyer for <strong>{{ record.celebrant_name }}</strong> has been generated successfully.</p>
+                <img src="{{ record.generated_flyer.url }}" alt="Generated birthday flyer" class="img-fluid flyer-preview rounded-4 shadow">
+                <div class="d-flex flex-column flex-md-row gap-3 justify-content-center mt-4">
+                    <a href="{{ record.generated_flyer.url }}" download class="btn btn-gold btn-lg px-4">Download PNG</a>
+                    <a href="{% url 'flyer_app:home' %}" class="btn btn-outline-secondary btn-lg px-4">Generate Another Flyer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
