@@ -1,0 +1,94 @@
+:root {
+    --deep-blue: #0f1e46;
+    --gold: #d4ad63;
+    --cream: #f8f3e9;
+    --text-dark: #1f2330;
+}
+
+body {
+    background: linear-gradient(145deg, #f6f8fc 0%, #eef2f8 100%);
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+.nav-premium {
+    background: linear-gradient(90deg, #111e46 0%, #2f1d53 100%);
+    box-shadow: 0 8px 24px rgba(14, 23, 53, 0.25);
+}
+
+.premium-card, .mockup-card {
+    border-radius: 1.2rem;
+    background: #ffffff;
+}
+
+.btn-gold {
+    background: linear-gradient(90deg, #b98d47 0%, #d6b36f 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 8px 18px rgba(179, 138, 72, 0.35);
+}
+
+.btn-gold:hover {
+    color: #fff;
+    background: linear-gradient(90deg, #a87f3d 0%, #c6a35f 100%);
+}
+
+.badge-label {
+    color: #6b5a37;
+    letter-spacing: 0.08em;
+}
+
+.mock-flyer {
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(180deg, #161f4d 0%, #5d3a7d 100%);
+    box-shadow: 0 12px 26px rgba(20, 24, 55, 0.35);
+}
+
+.mock-inner {
+    border: 2px solid rgba(212, 173, 99, 0.9);
+    border-radius: 0.9rem;
+    text-align: center;
+    color: #fff;
+    padding: 1rem;
+}
+
+.mock-inner h3 {
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.avatar-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    margin: 0 auto 0.75rem;
+    background: radial-gradient(circle, #ffffff 0%, #d9d9d9 100%);
+    border: 5px solid var(--gold);
+}
+
+.name {
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.mini {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    margin: 0;
+}
+
+.flyer-preview {
+    max-height: 820px;
+    border: 4px solid #fff;
+}
+
+@media (max-width: 991px) {
+    .navbar-brand {
+        font-size: 1rem;
+        white-space: normal;
+    }
+}
